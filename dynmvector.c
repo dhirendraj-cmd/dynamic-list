@@ -34,7 +34,7 @@ void append(List *lst, int element){
            lst->capacity *= 2;
         }
         
-        printf("REALLOCATING SIZE\n");
+        printf("CURRENT CAPACITY IS %zu, LENGTH HAS EXCEEDED CAPACITY, SO REALLOCATING SIZE\n", lst->capacity);
         int *newarr = realloc(lst->arr, lst->capacity * sizeof(*lst->arr));
         if (!newarr) return;
 
@@ -44,6 +44,12 @@ void append(List *lst, int element){
     lst->arr[lst->length] = element;
     lst->length++;
 
+}
+
+void printList(List *lst){
+    for(int i=0; i<lst->length; i++){
+        printf("%d ", lst->arr[i]);
+    }
 }
 
 void freeList(List *lst){

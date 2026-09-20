@@ -7,14 +7,14 @@
 typedef struct
 {
     int *arr;
-    size_t lenth;
+    size_t length;
     size_t capacity;
 } List;
 
 
-List* create(size_t initialCapacity);
+List* create();
 
-void append(List *list, int *element);
+void append(List *lst, int element);
 
 void freeList(List *lis);
 

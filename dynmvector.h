@@ -11,14 +11,18 @@ typedef struct
     size_t capacity;
 } List;
 
-
-List* create();
+// create internal function for creating list
+List* _internal_create();
 
 void append(List *lst, int element);
 
 void printList(List *lst);
 
 void freeList(List *lis);
+
+
+// python/Js like list creation
+#define list(name) List* name = _internal_create();
 
 
 #endif

@@ -4,7 +4,7 @@
 #include <string.h>
 
 
-List* create(){
+List* _internal_create(){
     List *lst = malloc(sizeof(*lst));
     if (!lst) return NULL;
 
@@ -15,7 +15,7 @@ List* create(){
     }
 
     lst->length = 0;
-    lst->capacity=2;
+    lst->capacity=4;
 
     return lst;
 }
@@ -47,9 +47,11 @@ void append(List *lst, int element){
 }
 
 void printList(List *lst){
+    printf("[");\
     for(int i=0; i<lst->length; i++){
-        printf("%d ", lst->arr[i]);
-    }
+        printf("%d%s", lst->arr[i], (i==(lst->length -1) ? "" : ","));\
+    }\
+    printf("]\n");
 }
 
 void freeList(List *lst){

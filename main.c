@@ -5,7 +5,8 @@
 
 int main(){
 
-    List *lst = create();
+    // python type list: lst=[]
+    list(lst);
 
     for(int i=1; i<=100; i++){
         append(lst, i);

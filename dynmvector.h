@@ -16,6 +16,8 @@ List* create();
 
 void append(List *lst, int element);
 
+void printList(List *lst);
+
 void freeList(List *lis);
 
 

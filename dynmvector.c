@@ -21,10 +21,10 @@ List* _internal_create(){
 }
 
 
-void append(List *lst, int element){
+void append(List *lst, Elementype element){
     if(!lst) return;
 
-    size_t addLen, neededLength;
+    size_t neededLength;
 
     neededLength = lst->length + 1;
 
@@ -35,7 +35,7 @@ void append(List *lst, int element){
         }
         
         printf("CURRENT CAPACITY IS %zu, LENGTH HAS EXCEEDED CAPACITY, SO REALLOCATING SIZE\n", lst->capacity);
-        int *newarr = realloc(lst->arr, lst->capacity * sizeof(*lst->arr));
+        Elementype *newarr = realloc(lst->arr, lst->capacity * sizeof(*lst->arr));
         if (!newarr) return;
 
         lst->arr = newarr;
@@ -48,14 +48,36 @@ void append(List *lst, int element){
 
 void printList(List *lst){
     printf("[");\
-    for(int i=0; i<lst->length; i++){
-        printf("%d%s", lst->arr[i], (i==(lst->length -1) ? "" : ","));\
+    for(size_t i=0; i<lst->length; i++){
+        switch(lst->arr[i].tagtype){
+            case TAG_INT:
+                printf("%d%s", lst->arr[i].data.i, (i==(lst->length -1) ? "" : ", "));
+                break;
+            case TAG_FLOAT:
+                printf("%.2f%s", lst->arr[i].data.f, (i==(lst->length -1) ? "" : ", "));
+                break;
+            case TAG_CHAR:
+                printf("%c%s", lst->arr[i].data.c, (i==(lst->length -1) ? "" : ", "));
+                break;
+            case TAG_STRING:
+                printf("%s%s", lst->arr[i].data.s, (i==(lst->length -1) ? "" : ", "));
+                break;
+
+        }
     }\
     printf("]\n");
 }
 
 void freeList(List *lst){
     if(lst){
+        for (size_t i = 0; i < lst->length; i++)
+        {
+            if (lst->arr[i].tagtype == TAG_STRING){
+                free(lst->arr[i].data.s);
+            }
+            
+        }
+        
         free(lst->arr);
         free(lst);
     }

@@ -8,7 +8,8 @@
 typedef enum{
     TAG_INT,
     TAG_FLOAT,
-    TAG_CHAR
+    TAG_CHAR,
+    TAG_STRING
 } Tagtypes;
 
 typedef struct{
@@ -17,7 +18,8 @@ typedef struct{
         int i;
         float f;
         char c;
-    } data
+        char *s;
+    } data;
 } Elementype;
 
 typedef struct
